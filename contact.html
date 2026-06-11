@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Natal International High School</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-section">
+                <img alt="Natal International High School Logo" src="images/logo.jfif" class="logo" width="80" height="80">
+                <h1 class="school-name">Natal International High School</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="content-wrapper">
+            <article class="main-content">
+                <h2>Get In Touch</h2>
+                <p>Have questions or inquiries? Please fill out the form below and we'll get back to you as soon as possible.</p>
+
+                <form class="contact-form" action="https://formspree.io/f/xyzabc" method="POST">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                    <input type="hidden" name="_cc" value="virovirus2@gmail.com,virusviro51@gmail.com">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="male" required> Male
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="female"> Female
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inquiry">Inquiry Message *</label>
+                        <textarea id="inquiry" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+
+                <div class="form-info">
+                    <p><strong>Note:</strong> All form submissions will be sent to our email addresses and you'll receive a confirmation shortly.</p>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <h3>Contact Information</h3>
+                    <div class="contact-info">
+                        <p>
+                            <strong>Primary Email:</strong><br>
+                            <a href="mailto:virovirus2@gmail.com">virovirus2@gmail.com</a>
+                        </p>
+                        <p>
+                            <strong>Secondary Email:</strong><br>
+                            <a href="mailto:virusviro51@gmail.com">virusviro51@gmail.com</a>
+                        </p>
+                        <p>
+                            <strong>Phone:</strong><br>
+                            <a href="tel:+256745324456">+256 745 324 456</a>
+                        </p>
+                        <p>
+                            <strong>WhatsApp:</strong><br>
+                            <a href="https://wa.me/256776342619">+256 776 342 619</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <p><strong>Facebook:</strong> <a href="#" target="_blank">NIH School</a></p>
+                        <p><strong>Instagram:</strong> <a href="#" target="_blank">@NIH_School</a></p>
+                        <p><strong>TikTok:</strong> <a href="#" target="_blank">#nihschool</a></p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3>Location</h3>
+                    <p>Mpigi District<br>Muduuma Sub-county<br>Uganda</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a> |
+                <a href="about.html">About</a> |
+                <a href="projects.html">Projects</a> |
+                <a href="services.html">Services</a> |
+                <a href="contact.html">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2025 Natal International High School. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
