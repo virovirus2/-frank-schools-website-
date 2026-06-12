@@ -5,6 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Natal International High School</title>
     <link rel="stylesheet" href="styles/style.css">
+    <style>
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .radio-group, .checkbox-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        button.submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button.submit-btn:hover { background-color: #0056b3; }
+        .form-message {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .required { color: #dc3545; }
+        .contact-info {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        .social-links a:hover {
+            background-color: #0056b3;
+        }
+        .contact-item {
+            margin-bottom: 1rem;
+        }
+        .contact-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -31,17 +120,17 @@
                 <h2>Get In Touch</h2>
                 <p>Have questions or inquiries? Please fill out the form below and we'll get back to you as soon as possible.</p>
 
-                <form class="contact-form" action="https://formspree.io/f/xyzabc" method="POST">
-                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-                    <input type="hidden" name="_cc" value="virovirus2@gmail.com,virusviro51@gmail.com">
+                <div id="formMessage" class="form-message"></div>
+
+                <form id="contactForm" class="contact-form" method="POST">
                     
                     <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="gender">Gender *</label>
+                        <label>Gender <span class="required">*</span></label>
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="male" required> Male
@@ -49,67 +138,118 @@
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="female"> Female
                             </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="other"> Other
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="prefer-not-to-say"> Prefer not to say
+                            </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Address *</label>
-                        <input type="text" id="address" name="address" required>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
                     </div>
 
                     <div class="form-group">
-                        <label for="inquiry">Inquiry Message *</label>
-                        <textarea id="inquiry" name="message" rows="5" required></textarea>
+                        <label for="address">Address <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" required aria-required="true">
                     </div>
 
-                    <button type="submit" class="btn-submit">Send Message</button>
+                    <div class="form-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" name="city" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State/Province</label>
+                        <input type="text" id="state" name="state">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Zip/Postal Code</label>
+                        <input type="text" id="zipcode" name="zipcode">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <select id="subject" name="subject" required aria-required="true">
+                            <option value="">-- Select a subject --</option>
+                            <option value="general-inquiry">General Inquiry</option>
+                            <option value="admissions">Admissions</option>
+                            <option value="academics">Academics</option>
+                            <option value="events">Events & Activities</option>
+                            <option value="facilities">Facilities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" required aria-required="true" placeholder="Please share your message or inquiry..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
 
                 <div class="form-info">
-                    <p><strong>Note:</strong> All form submissions will be sent to our email addresses and you'll receive a confirmation shortly.</p>
+                    <p><strong>Note:</strong> All form submissions will be reviewed and responded to within 24-48 hours.</p>
                 </div>
             </article>
 
+            <!-- Sidebar with Contact Information -->
             <aside class="sidebar">
                 <div class="sidebar-box">
-                    <h3>Contact Information</h3>
-                    <div class="contact-info">
-                        <p>
-                            <strong>Primary Email:</strong><br>
-                            <a href="mailto:virovirus2@gmail.com">virovirus2@gmail.com</a>
-                        </p>
-                        <p>
-                            <strong>Secondary Email:</strong><br>
-                            <a href="mailto:virusviro51@gmail.com">virusviro51@gmail.com</a>
-                        </p>
-                        <p>
-                            <strong>Phone:</strong><br>
-                            <a href="tel:+256745324456">+256 745 324 456</a>
-                        </p>
-                        <p>
-                            <strong>WhatsApp:</strong><br>
-                            <a href="https://wa.me/256776342619">+256 776 342 619</a>
-                        </p>
+                    <h3>📞 Contact Information</h3>
+                    <div class="contact-item">
+                        <strong>Primary Email:</strong><br>
+                        <a href="mailto:virovirus2@gmail.com">virovirus2@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Secondary Email:</strong><br>
+                        <a href="mailto:virusviro51@gmail.com">virusviro51@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong><br>
+                        <a href="tel:+256745324456">+256 745 324 456</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>WhatsApp:</strong><br>
+                        <a href="https://wa.me/256776342619" target="_blank" rel="noopener noreferrer">+256 776 342 619</a>
                     </div>
                 </div>
 
                 <div class="sidebar-box">
-                    <h3>Follow Us</h3>
+                    <h3>🌐 Follow Us On Social Media</h3>
+                    <p>Connect with us on all platforms:</p>
                     <div class="social-links">
-                        <p><strong>Facebook:</strong> <a href="#" target="_blank">NIH School</a></p>
-                        <p><strong>Instagram:</strong> <a href="#" target="_blank">@NIH_School</a></p>
-                        <p><strong>TikTok:</strong> <a href="#" target="_blank">#nihschool</a></p>
+                        <a href="https://facebook.com/natalschool" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Visit our Facebook page">f</a>
+                        <a href="https://twitter.com/natalschool" target="_blank" rel="noopener noreferrer" title="Twitter" aria-label="Follow us on Twitter">𝕏</a>
+                        <a href="https://instagram.com/natalschool" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Follow us on Instagram">📷</a>
+                        <a href="https://linkedin.com/company/natalschool" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Connect on LinkedIn">in</a>
+                        <a href="https://youtube.com/natalschool" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="Subscribe on YouTube">▶</a>
+                        <a href="https://tiktok.com/@nihschool" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="Follow us on TikTok">🎵</a>
                     </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">
+                        <strong>Facebook:</strong> <a href="https://facebook.com/natalschool" target="_blank" rel="noopener noreferrer">NIH School</a><br>
+                        <strong>Instagram:</strong> <a href="https://instagram.com/natalschool" target="_blank" rel="noopener noreferrer">@NIH_School</a><br>
+                        <strong>TikTok:</strong> <a href="https://tiktok.com/@nihschool" target="_blank" rel="noopener noreferrer">@nihschool</a>
+                    </p>
                 </div>
 
                 <div class="sidebar-box">
-                    <h3>Location</h3>
-                    <p>Mpigi District<br>Muduuma Sub-county<br>Uganda</p>
+                    <h3>📍 Location</h3>
+                    <p>
+                        Mpigi District<br>
+                        Muduuma Sub-county<br>
+                        Uganda
+                    </p>
                 </div>
             </aside>
         </section>
@@ -128,5 +268,38 @@
             <p class="copyright">&copy; 2025 Natal International High School. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById('formMessage');
+            const formData = new FormData(e.target);
+            
+            try {
+                // Send to backend (configure your endpoint)
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                });
+                
+                if (response.ok) {
+                    formMessage.textContent = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    e.target.reset();
+                    setTimeout(() => formMessage.style.display = 'none', 5000);
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                formMessage.textContent = 'Error sending message. Please try again later or contact us directly using the information provided.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
